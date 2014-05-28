@@ -1,0 +1,81 @@
+<?php
+// ===================================================
+// Load database info and local development parameters
+// ===================================================
+$chassisdir = '/vagrant';
+if ( file_exists( $chassisdir . '/local-config-db.php' ) ) {
+	define( 'WP_LOCAL_DEV', true );
+	include( $chassisdir . '/local-config-db.php' );
+}
+
+if ( file_exists( $chassisdir . '/local-config.php' ) ) {
+	defined('WP_LOCAL_DEV') or define( 'WP_LOCAL_DEV', true );
+	include( $chassisdir . '/local-config.php' );
+}
+
+// =======================
+// Load Chassis extensions
+// =======================
+if ( file_exists( $chassisdir . '/local-config-extensions.php' ) ) {
+	include( $chassisdir . '/local-config-extensions.php' );
+}
+
+// ======================================
+// Fake HTTP Host (for CLI compatibility)
+// ======================================
+if ( empty( $_SERVER['HTTP_HOST'] ) ) {
+	if ( defined( 'DOMAIN_CURRENT_SITE' ) ) {
+		$_SERVER['HTTP_HOST'] = DOMAIN_CURRENT_SITE;
+	}
+	else {
+		$_SERVER['HTTP_HOST'] = 'vagrant.local';
+	}
+}
+
+// ========================
+// Custom Content Directory
+// ========================
+defined('WP_CONTENT_DIR') or define( 'WP_CONTENT_DIR', $chassisdir . '/content' );
+defined('WP_CONTENT_URL') or define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/content' );
+
+// =====================
+// URL hacks for Vagrant
+// =====================
+if ( WP_LOCAL_DEV && ! defined('WP_SITEURL') ) {
+	define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/wp');
+
+	if ( ! defined( 'WP_HOME' ) ) {
+		define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+	}
+}
+
+// ================================================
+// You almost certainly do not want to change these
+// ================================================
+define( 'DB_CHARSET', 'utf8' );
+define( 'DB_COLLATE', '' );
+
+// ==============================================================
+// Table prefix
+// Change this if you have multiple installs in the same database
+// ==============================================================
+if ( empty( $table_prefix ) )
+	$table_prefix  = 'sztests_';
+
+// =====================================
+// Errors
+// Show/hide errors for local/production
+// =====================================
+defined( 'WP_DEBUG' ) or define( 'WP_DEBUG', true );
+
+define( 'WP_TESTS_DOMAIN', 'example.org' );
+define( 'WP_TESTS_EMAIL', 'admin@example.org' );
+define( 'WP_TESTS_TITLE', 'Test Blog' );
+
+define( 'WP_PHP_BINARY', 'php' );
+
+// ===================
+// Bootstrap WordPress
+// ===================
+if ( !defined( 'ABSPATH' ) )
+	define( 'ABSPATH', $chassisdir . '/wp/' );

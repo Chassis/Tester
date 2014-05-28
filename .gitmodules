@@ -1,0 +1,3 @@
+[submodule "wpdevel"]
+	path = wpdevel
+	url = git://develop.git.wordpress.org/
