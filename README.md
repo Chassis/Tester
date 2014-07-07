@@ -11,7 +11,7 @@ Ensure you have a Chassis instance set up locally already.
 cd extensions
 
 # Grab the extension
-git clone https://github.com/Chassis/Tester.git tester
+git clone --recursive https://github.com/Chassis/Tester.git tester
 
 # Reprovision
 cd ..
