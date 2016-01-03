@@ -1,7 +1,7 @@
 class tester (
 	$install_path = "/usr/local/src/phpunit",
 ) {
-	# Create the install paths
+	# Create the install path
 	file { $install_path:
 		ensure => directory,
 	}
