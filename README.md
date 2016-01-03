@@ -18,4 +18,19 @@ cd ..
 vagrant provision
 ```
 
+# Usage
+```
+vagrant ssh
+cd /vagrant/content/{plugins|themes}/yourdirectory
+```
+If you're using PHP 5.6+
+```
+phpunit
+```
+
+If you're using PHP 5.5 or earlier
+```
+phpunitold
+```
+
 You're now ready to run any WordPress unit tests locally!
