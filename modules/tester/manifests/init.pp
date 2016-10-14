@@ -10,7 +10,6 @@ class tester (
 		$phpunit_package_name = "phpunit.phar"
 		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit.phar"
 	} else {
-    notice("We're doing this")
 		$phpunit_package_name = "phpunit-old.phar"
     $phpunit_repo_url     = "https://phar.phpunit.de/phpunit-old.phar"
 	}
