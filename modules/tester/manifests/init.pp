@@ -11,7 +11,7 @@ class tester (
 		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit.phar"
 	} else {
 		$phpunit_package_name = "phpunit-old.phar"
-    $phpunit_repo_url     = "https://phar.phpunit.de/phpunit-old.phar"
+		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit-old.phar"
 	}
 
 	# Download phpunit
