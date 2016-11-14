@@ -23,15 +23,15 @@ class tester (
 
 	# Ensure we can run phpunit
 	file { "$install_path/$phpunit_package_name":
-		ensure => "present",
-		mode => "a+x",
+		ensure  => "present",
+		mode    => "a+x",
 		require => Exec[ 'phpunit download' ]
 	}
 
 	# Symlink it across
 	file { '/usr/bin/phpunit':
-		ensure => link,
-		target => "$install_path/$phpunit_package_name",
+		ensure  => link,
+		target  => "$install_path/$phpunit_package_name",
 		require => File[ "$install_path/$phpunit_package_name" ],
 	}
 }
