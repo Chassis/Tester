@@ -1,12 +1,13 @@
 class tester (
 	$install_path = "/usr/local/src/phpunit",
+	$tester_config = sz_load_config()
 ) {
 	# Create the install path
 	file { $install_path:
 		ensure => directory,
 	}
 
-	if versioncmp( "$tester_config[php]", '7.0' ) >= 0 {
+	if versioncmp( "$tester_config[php]", '5.6' ) >= 0 {
 		$phpunit_package_name = "phpunit.phar"
 		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit.phar"
 	} else {
