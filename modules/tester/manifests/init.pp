@@ -7,23 +7,21 @@ class tester (
 		ensure => directory,
 	}
 
-	if versioncmp( "$tester_config[php]", '5.6' ) >= 0 {
-		$phpunit_package_name = "phpunit.phar"
-		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit.phar"
+	if $tester_config[php] < 5.6 {
+		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-old.phar"
 	} else {
-		$phpunit_package_name = "phpunit-old.phar"
-		$phpunit_repo_url     = "https://phar.phpunit.de/phpunit-old.phar"
+		$phpunit_repo_url = "https://phar.phpunit.de/phpunit.phar"
 	}
 
 	# Download phpunit
 	exec { "phpunit download":
-		command => "/usr/bin/curl -o $install_path/$phpunit_package_name -L $phpunit_repo_url",
+		command => "/usr/bin/curl -o $install_path/phpunit.phar -L $phpunit_repo_url",
 		require => [ Package[ 'curl' ], File[ $install_path ] ],
-		creates => "$install_path/$phpunit_package_name",
+		creates => "$install_path/phpunit.phar",
 	}
 
 	# Ensure we can run phpunit
-	file { "$install_path/$phpunit_package_name":
+	file { "$install_path/phpunit.phar":
 		ensure  => "present",
 		mode    => "a+x",
 		require => Exec[ 'phpunit download' ]
@@ -32,7 +30,7 @@ class tester (
 	# Symlink it across
 	file { '/usr/bin/phpunit':
 		ensure  => link,
-		target  => "$install_path/$phpunit_package_name",
-		require => File[ "$install_path/$phpunit_package_name" ],
+		target  => "$install_path/phpunit.phar",
+		require => File[ "$install_path/phpunit.phar" ],
 	}
 }
