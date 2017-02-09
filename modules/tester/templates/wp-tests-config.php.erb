@@ -59,8 +59,11 @@ define( 'DB_COLLATE', '' );
 // Table prefix
 // Change this if you have multiple installs in the same database
 // ==============================================================
-if ( empty( $table_prefix ) )
-	$table_prefix  = 'sztests_';
+$table_prefix = 'test_';
+
+if ( defined( 'MULTISITE' ) && ! defined( 'WP_TESTS_MULTISITE' ) ) {
+	define( 'WP_TESTS_MULTISITE', (bool) MULTISITE );
+}
 
 // =====================================
 // Errors
