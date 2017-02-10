@@ -7,7 +7,12 @@ class tester (
 		ensure => directory,
 	}
 
-	$phpunit_repo_url = "https://phar.phpunit.de/phpunit-4.8.phar"
+
+	if $tester_config[php] < 5.6 {
+		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-5.7.phar"
+	} else {
+		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-4.8.phar"
+	}
 
 	# Download phpunit
 	exec { "phpunit download":
