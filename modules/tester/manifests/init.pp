@@ -1,6 +1,6 @@
 class tester (
 	$install_path = "/usr/local/src/phpunit",
-	$tester_config = sz_load_config(),
+	$tester_config = sz_load_config()
 ) {
 	# Create the install path
 	file { $install_path:
