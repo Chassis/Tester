@@ -8,9 +8,9 @@ class tester (
 	}
 
 	if $tester_config[php] < 5.6 {
-		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-5.7.phar"
-	} else {
 		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-4.8.phar"
+	} else {
+		$phpunit_repo_url = "https://phar.phpunit.de/phpunit-5.7.phar"
 	}
 
 	# Download phpunit
