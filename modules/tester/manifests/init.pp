@@ -33,4 +33,13 @@ class tester (
 		target  => "$install_path/phpunit.phar",
 		require => File[ "$install_path/phpunit.phar" ],
 	}
+
+	if ( $tester_config[tester_db] ) {
+		mysql::db { $tester_config[tester_db][name]:
+			user     => $tester_config[tester_db][user],
+			password => $tester_config[tester_db][password],
+			host     => localhost,
+			grant    => ['all'],
+		}
+	}
 }

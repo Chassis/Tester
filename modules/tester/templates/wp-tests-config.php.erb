@@ -3,7 +3,11 @@
 // Load database info and local development parameters
 // ===================================================
 $chassisdir = '/vagrant';
-if ( file_exists( $chassisdir . '/local-config-db.php' ) ) {
+
+if ( file_exists( $chassisdir . '/local-config-tester.php' ) ) {
+	define( 'WP_LOCAL_DEV', true );
+	include( $chassisdir . '/local-config-tester.php' );
+} elseif ( file_exists( $chassisdir . '/local-config-db.php' ) ) {
 	define( 'WP_LOCAL_DEV', true );
 	include( $chassisdir . '/local-config-db.php' );
 }
