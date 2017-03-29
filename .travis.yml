@@ -5,3 +5,7 @@ install:
 
 script:
   - puppet-lint --fail-on-warnings modules
+
+notifications:
+  slack:
+    secure: JE2zKZ1cjxMQ2/9wOE4vwmupHI1bj7QaTLbnTKNUQEUFBJsprKwvrWCGuupvpJ0v22FvVFPnkINQa1drTyVgxVVxQ4i2WOM8wBaE6WkaJn8nly0jNvy1TyrSOiwU8PWROY1Q8eNCUQYL4By4xFmKUuf66Mgnx6ERkSfv8xAO8cE=
