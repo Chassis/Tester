@@ -1,14 +1,14 @@
 # Tester extension for Chassis
 class tester (
+  $config,
   $install_path = '/usr/local/src/phpunit',
-  $tester_config = sz_load_config()
 ) {
   # Create the install path
   file { $install_path:
     ensure => directory,
   }
 
-  if $tester_config[php] < 5.6 {
+  if ( $config[php] < 5.6 ) {
     $phpunit_repo_url = 'https://phar.phpunit.de/phpunit-4.8.phar'
   } else {
     $phpunit_repo_url = 'https://phar.phpunit.de/phpunit-5.7.phar'
@@ -34,4 +34,6 @@ class tester (
     target  => "${install_path}/phpunit.phar",
     require => File[ "${install_path}/phpunit.phar" ],
   }
+
+  class { "tester::config": }
 }
