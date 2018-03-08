@@ -35,5 +35,5 @@ class tester (
     require => File[ "${install_path}/phpunit.phar" ],
   }
 
-  class { "tester::config": }
+  class { 'tester::config': }
 }
