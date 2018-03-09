@@ -25,4 +25,14 @@ cd /vagrant/content/{plugins|themes}/yourdirectory
 phpunit
 ```
 
+# Custom Database
+
+You can optionally provide a custom database for the tests to use in one of your `.yaml` files: e.g.
+```
+tester_db:
+    name: customtests
+    user: wordpress
+    password: vagrantpassword
+```
+
 You're now ready to run any WordPress unit tests locally!
