@@ -46,12 +46,12 @@ class tester (
 		}
 
 		if ( $config[tester_db] ) {
-				mysql::db { $config[tester_db][name]:
-					user     => $config[tester_db][user],
-					password => $config[tester_db][password],
-					host     => localhost,
-					grant    => ['all']
-				}
+			mysql::db { $config[tester_db][name]:
+				user     => $config[tester_db][user],
+				password => $config[tester_db][password],
+				host     => localhost,
+				grant    => ['all']
+			}
 		}
 
 		} else {
