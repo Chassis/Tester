@@ -54,6 +54,8 @@ class tester (
 			}
 		}
 
+		class { 'tester::config': }
+
 		} else {
 			file { $install_path:
 				ensure => $tester,
@@ -61,8 +63,6 @@ class tester (
 			}
 			file { '/usr/bin/phpunit':
 				ensure => absent
-	}
-
-		class { 'tester::config': }
+		}
 	}
 }
