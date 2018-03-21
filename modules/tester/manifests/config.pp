@@ -15,4 +15,10 @@ class tester::config {
     ensure  => $file,
     content => template('tester/tester-env.sh.erb')
   }
+
+  exec { 'load_tester_envs':
+    path      => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin',
+    command   => "bash -c 'source /etc/profile.d/tester-env.sh'",
+    subscribe => File['/etc/profile.d/tester-env.sh']
+  }
 }
