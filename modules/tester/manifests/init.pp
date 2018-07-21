@@ -17,7 +17,7 @@ class tester (
 			ensure => directory,
 		}
 
-		if ( $config[php] < '5.6' ) {
+		if versioncmp( $config[php], '5.6' ) == 0 {
 			$phpunit_repo_url = 'https://phar.phpunit.de/phpunit-4.8.phar'
 		} else {
 			$phpunit_repo_url = 'https://phar.phpunit.de/phpunit-6.5.phar'
