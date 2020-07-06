@@ -1,0 +1,15 @@
+<?php
+
+// This is generated automatically by chassis/tester. Edit at your own risk.
+<% if @test_database -%>
+define( 'DB_NAME',     '<%= @test_database %>' );
+<% end -%>
+<% if @test_database_user -%>
+define( 'DB_USER',     '<%= @test_database_user %>' );
+<% end -%>
+<% if @test_database_password -%>
+define( 'DB_PASSWORD', '<%= @test_database_password %>' );
+<% end -%>
+<% if @test_database_host -%>
+define( 'DB_HOST',     '<%= @test_database_host %>' );
+<% end -%>

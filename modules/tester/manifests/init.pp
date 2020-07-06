@@ -20,13 +20,17 @@ class tester (
 				grant    => ['all']
 			}
 		}
-
-		class { 'tester::config': }
 	} else {
 		exec { 'unset env variables':
 			command  => 'unset WP_DEVELOP_DIR; unset WP_TESTS_DIR;',
 			path     => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin',
 			provider => 'shell'
 		}
+	}
+
+	# Invoke even if tester is disabled, in order to clean up templated files.
+	class { 'tester::config':
+		test_config => $config[tester_db],
+		ensure      => $tester,
 	}
 }
