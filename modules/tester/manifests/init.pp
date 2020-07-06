@@ -28,11 +28,9 @@ class tester (
 		}
 	}
 
-	# Invoke even if tester is disabled in order to clean up templated files.
+	# Invoke even if tester is disabled, in order to clean up templated files.
 	class { 'tester::config':
-		test_database => $config[tester_db][name],
-		test_database_user => $config[tester_db][user],
-		test_database_password => $config[tester_db][password],
-		test_database_host => $config[tester_db][host],
+		test_config => $config[tester_db],
+		ensure      => $tester,
 	}
 }
